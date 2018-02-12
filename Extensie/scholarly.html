@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang='ro'>
+<head>
+	<title>
+		ScolaryHTML
+	</title>
+	<meta charset='UTF-8'>
+	<style>
+		body {
+			margin: auto;
+			width: 75%;
+			background-color: #FFFFFF;
+		}
+		h4{
+			color: #0000FF;
+		}
+		h1{
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+<h1>Anno (Audio Annotation Tool)</h1>
+
+<p>Acest raport descrie curentul progress la proiectul numit „Anno (Audio Annotation Tool)” care va fi evaluat la disciplina Dezvoltarea Aplicatiilor Web la Nivel de Cleint promoția 2017-2018.
+  Acest proiect a fost realizat de studentul Sofian George-Andrei,anul III, grupa B7.</p>
+
+<h4><b>1.Introducere</b></h4>
+<p>Se doreşte implementarea unui instrument Web (eventual, o extensie de navigator sau componentă Web) pentru adnotarea conţinuturilor audio redate utilizatorului. O adnotare poate include termeni de conţinut (tag-uri) sau poate avea ataşate resurse
+  specifice: imagini, alte melodii, videoclip-uri, coordonate geografice, persoane ce au contribuit la acel conţinut (de exemplu, compozitor sau interpret) etc. Sistemul va putea realiza managementul tuturor adnotărilor specificate de un utilizator cu
+  posibilitatea exportării acestora în formate CSV, JSON şi XML.</p>
+
+<h4><b>1. Etapele dezvoltarii proiectului</b></h4>
+<ol type="a">
+<li> Schite; </li>
+<li> Creare pagini popup; </li>
+<li> Design & implementare; </li>
+<li> Implementarea pe baza html/css/javascript; </li>
+</ol>
+
+<h4><b>2.Tehnologi utilizate</b></h4>
+
+Proiectul utilizează următoarele tehnologii:
+<ol type="a">
+<li>
+HTML5 - este un limbaj pentru structurarea și prezentarea conținutului pentru World Wide Web, o tehnologie nucleu pentru Internet propusă inițial pentru
+software-ul Opera.</li>
+<li>
+CSS - (Cascading Style Sheets) este un standard pentru formatarea elementelor unui document HTML. Stilurile se pot atașa elementelor HTML prin intermediul
+unor fișiere externe sau în cadrul documentului, prin elementul "style" și/sau atributul style. CSS se poate utiliza și pentru formatarea elementelor XHTML,
+XML și SVGL</li>
+<li>
+Javascript - este un limbaj de programare orientat obiect bazat pe conceptul prototipurilor.Este folosit mai ales pentru introducerea unor funcționalități în
+paginile web, codul Javascript din aceste pagini fiind rulat de către browser. Limbajul este binecunoscut pentru folosirea sa în construirea siturilor web,
+dar este folosit și pentru acesul la obiecte încastrate (embedded objects) în alte aplicații. A fost dezvoltat inițial de către Brendan Eich de la Netscape
+Communications Corporation sub numele de Mocha, apoi LiveScript, și denumit în final JavaScript.<br>
+În ciuda numelui și a unor similarități în sintaxă, între JavaScript și limbajul Java nu există nicio legătură. Ca și Java, JavaScript are o sintaxă apropiată 
+de cea a limbajului C, dar are mai multe în comun cu limbajul Self decât cu Java.
+</li>
+<li> Api-ul Chrome a fost folosit pentru a prelua informatiile necesare din tabul curent si pentru a le salva. Comunicarea dintre popup si tab s-a facut pe baza 
+mesajelor. Aceasta comunicare a fost folosita pentru extragerea informatiilor din paginile care contin video-uri. Recunoastem o pagina care contine video prin 
+intermediul valorii campului "time" din raspuns. Chrome.storage a fost folosit pentru a salva datele si a le reda ulterior in tab-ul corespunzator.  
+</li>
+</ol>
+
+
+<h4><b>3. Structura</b></h4>
+
+Pagina "popup.html" contine:<br>
+<ol>
+<li>Un div care contine URL-ul tabului si unul care contine secunda curenta la care se afla video-ul din pagina respectiva(daca acesta exista,altfel va fi null);</li>
+<li>Un buton "Get Info" care va seta URL-ul si timpul;</li>
+<li>Campuri pentru introducerea adnotarilor(Artists,Tags,Links);</li>
+<li>Un buton "Save" care va salva adnotarile;</li>
+<li>Un buton "Reset page" care va sterge adnotarile din pagina curenta;</li>
+<li>Un buton "Export" care va exporta adnotarile.</li>
+</ol>
+Extensia va insera in tab un div care va contine:
+<ol>
+<li>Un camp pentru afisarea adnotarilor de tip "Artist";</li>
+<li>Un camp pentru afisarea adnotarilor de tip "Tag";</li>
+<li>Un camp pentru afisarea adnotarilor de tip "Link".</li>
+</ol>
+
+<h4><b>4. Servicii</b></h4>
+
+GitHub este un serviciu de găzduire web pentru proiecte de dezvoltare a software-ului care utilizează sistemul de control al versiunilor Git. GitHub
+oferă planuri tarifare pentru depozite private și conturi gratuite pentru proiecte open source.<br>
+Proiectul curent se poate gasi la aceasta adresa<a href="https://github.com/georgesofian/Audio-Annotation-Tool"> GitHub.</a> <br>
+
+</body>
+</html>
