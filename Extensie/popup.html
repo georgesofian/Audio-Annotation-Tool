@@ -1,0 +1,82 @@
+<html>
+    <style>
+        .inputfile {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+        .inputfile + label {
+            background-color: #3D3D3D;
+	        cursor: pointer;
+            padding:5px;
+        }
+        textarea{
+            resize: none
+        }
+        body{
+            background-color: #3D3D3D;
+            color:white
+        }
+        #container {
+            width: auto;
+            height: auto;
+            min-height: 100px;
+            min-width:  100px;
+            background-color: #4C4C4C
+        }
+        button{
+            transition: background-color 0.5s ease;
+            width: 80%;
+            background-color: #008CBA; 
+            border: none;
+            color: white;
+            text-align: center;
+            display: inline-block;
+            padding: 10px;
+            font-size: 14px;
+            border-style:solid;
+            border-color:#3D3D3D;
+        }
+        button:hover{
+            -webkit-transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            transform: scale(1.2);
+        }
+
+    </style>
+    <div id="container">
+        <center>
+        <div><i><b>Url:</b></i></div>
+        <div id="urldiv">Default</div>
+        <div><i><b>Time:</b></i></div>
+        <div id="time">00:00</div>
+        <br>
+        <button id="getInfoButton">Get Info</button>
+        <br><br>
+        <div><i><b>Artists:</b></i></div>
+        <textarea id="artists"></textarea>
+        <br>
+        <div><i><b>Tags:</b></i></div>
+        <textarea id="tags"></textarea>
+        <br>
+        <div><i><b>Links:</b></i></div>
+        <textarea id="links"></textarea>
+        <br>
+        <div><i><b>Image:</b></i></div>
+        <br>
+        <input type="file" name="file" id="file" class="inputfile" />
+        <label for="file"><b>Choose or drop a file</b></label>
+        <br>
+        <br>
+        <button id="saveButton">Save</button>
+        <br>
+        <button id="reset">Rst Pg Ann</button>
+        <br>
+        <br>
+        <script type="text/javascript" src ="popup.js"></script>
+        </center>
+    </div>
+</html>
