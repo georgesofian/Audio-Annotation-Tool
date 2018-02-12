@@ -1,9 +1,11 @@
 var url = null;
 var time = null;
 
+chrome.storage.sync.set({"annotationsData":{}});
+
 function setInfo(){
-    chrome.tabs.query({'active': true,'currentWindow':true},function(tab){
-        chrome.tabs.sendMessage(tab[0].id,"giveInfo", function(response){
+    chrome.tabs.query({'active': true,'currentWindow':true},function(tab){//Obtinem tab-urile active ale ferestrei
+        chrome.tabs.sendMessage(tab[0].id,"giveInfo", function(response){//Trimitem mesaj "giveInfo" catre tab-ul activ si primim ca raspuns informatiile necesare
             if(response){
                 url = response.url;
                 document.getElementById("time").innerText = "00:00"
@@ -45,8 +47,6 @@ function saveData(){
         var tags = document.getElementById("tags").value.split(';');
         var artists = document.getElementById("artists").value.split(';');
         var links = document.getElementById("links").value.split(';');
-        var image = document.getElementById("file").files[0];
-        console.log(image);
 
         for( var index in tags)
             if(tags[index]!='')
@@ -60,26 +60,7 @@ function saveData(){
             if(links[index]!='')
                 notes.push({tip:"link", continut: links[index]});
 
-        if(image && image.type.indexOf('image')!=-1 && image.size < 1048576 ){
-            var reader = new FileReader()
-
-            reader.onload = function(err){
-                var chunks = reader.result.match(/(.|[\r\n]){1,3000}/g);
-                var annotInfo = [];
-                for(var i=0; i<chunks.length; i++){
-                    var toInsert = {}
-                    toInsert[image.name+"-"+i] = chunks[i]
-                    annotInfo.push(image.name+"-"+i);
-                    chrome.storage.sync.set(toInsert);
-                }
-                notes.push({tip:"image", continut:annotInfo});
-                _save(notes);
-            }
-            
-            reader.readAsBinaryString(image)
-        }
-        else if(notes.length>0){
-            document.getElementById("file").value='';
+        if(notes.length>0){
             _save(notes);
         }
 
@@ -98,8 +79,8 @@ function reset(){
     }
 }
 
-chrome.tabs.query({'active': true,'currentWindow':true},function(tab){
-    chrome.tabs.sendMessage(tab[0].id,"giveInfo", function(response){
+chrome.tabs.query({'active': true,'currentWindow':true},function(tab){//Obtinem tab-urile active ale ferestrei
+    chrome.tabs.sendMessage(tab[0].id,"giveInfo", function(response){//Trimitem mesaj "giveInfo" catre tab-ul activ si primim ca raspuns informatiile necesare
         if(response){
             document.getElementById("urldiv").innerText = response.url;
             url = response.url;
@@ -119,6 +100,17 @@ chrome.tabs.query({'active': true,'currentWindow':true},function(tab){
     });
 });
 
+function exportData(){
+    chrome.storage.sync.get(['annotationsData'], function(object){
+        if(object.annotationsData){
+            data = JSON.stringify(object.annotationsData);
+            exportWindow = window.open(null);
+            exportWindow.document.write(data);
+        }
+    });
+}
+
 document.getElementById("saveButton").onclick = saveData;
 document.getElementById("getInfoButton").onclick = setInfo;
 document.getElementById("reset").onclick = reset;
+document.getElementById("export").onclick = exportData;

@@ -1,8 +1,11 @@
 {
     "manifest_version":2,
-    "name":"Test",
+    "name":"ANNO",
     "description": "Null",
     "version": "1.0",
+	"icons": {
+    "20": "anno.jpg"
+  },
     "browser_action": {
         "default_popup": "popup.html"
     },
