@@ -110,7 +110,7 @@ function updateDiv(){
                 for(var timeKey in data){
                     var timeValue = parseInt(timeKey);
                     var timeDiff  = Math.abs(currentTime - timeValue)
-                    if(timeDiff <=5 && minDiff > timeDiff){//vom afisa divul timp de 5 secunde
+                    if(timeDiff <=5 && minDiff > timeDiff){
                         minDiff = timeDiff
                         minDiffObject = data[timeKey]
                     }
@@ -151,7 +151,4 @@ function updateDiv(){
     });
 }
 
-setInterval(updateDiv, 1000);
-// chrome.storage.sync.get(['annotationsData'], function(object){
-//     console.log(object.annotationsData[document.URL]);
-// });
+setInterval(updateDiv, 1000);//vom afisa divul timp de 10 secunde
