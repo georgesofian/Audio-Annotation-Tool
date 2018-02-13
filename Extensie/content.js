@@ -7,8 +7,10 @@ function injectScript(func){
 }
 
 function timeEvent(){
+	//preluam URL-ul tabului
     var url = document.URL;
     var time = null;
+	//daca vrem sa rulam extensia si pe alte site-uri cu api-ul pentru video diferit de cel al Youtube, va trebui adaugat un nou bloc "if"	//facebook si youtube au functii diferite pentru preluarea secundelor scurse;
     try{
         if(document.URL.indexOf("facebook")!=-1){
             time = document.querySelectorAll("video")[0].currentTime
@@ -43,7 +45,7 @@ chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){ //Cr
     if(message == "giveInfo") //Raspundem doar mesajelor "giveInfo" 
         getTime(sendResponse) //Folosesc functia sendResponse ca callback pentru functia getTime
 });
-
+//vom crea un div pentru adnotari pe care il vom adauga pe tab-ul curent
 var annotationsDiv=document.createElement("div");
 annotationsDiv.id = "annotationsDiv";   
 annotationsDiv.hidden = true;   
@@ -62,6 +64,7 @@ annotationsContainer.style.display= "block";
 annotationsDiv.appendChild(annotationsContainer);
 
 annotationsContainer.innerHTML = "<br><font size='3' color='white'><b><i>Artists:</i><b></font><br>"
+//vom crea cate un div pentru fiecare categorie de adnotari
 var artistsDiv = document.createElement('div');
 artistsDiv.style.fontSize = "150%";
 artistsDiv.id = "artistsDiv";
@@ -92,9 +95,9 @@ linksDiv.style.margin = "auto";
 annotationsContainer.appendChild(linksDiv);
 
 
-
+//in functie de adnotarile primite, vom afisa in div-ul pentru adnotari informatiile
 function updateDiv(){
-    chrome.storage.sync.get(["annotationsData"], function(object){
+    chrome.storage.sync.get(["annotationsData"], function(object){//vom prelua din storage datele
         if(object.annotationsData && object.annotationsData[document.URL]){
             var data = object.annotationsData[document.URL]
 
@@ -107,7 +110,7 @@ function updateDiv(){
                 for(var timeKey in data){
                     var timeValue = parseInt(timeKey);
                     var timeDiff  = Math.abs(currentTime - timeValue)
-                    if(timeDiff <=5 && minDiff > timeDiff){
+                    if(timeDiff <=5 && minDiff > timeDiff){//vom afisa divul timp de 5 secunde
                         minDiff = timeDiff
                         minDiffObject = data[timeKey]
                     }
